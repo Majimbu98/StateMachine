@@ -3,6 +3,9 @@
 
 class Player
 {
+private:
+	Context* m_Context;
+
 public:
 
 	Player();
@@ -12,9 +15,9 @@ public:
 	int ZPosition;
 	int Munitions;
 
-	State* My_State;
+	State* CurrentState;
 
-	void ChangeState(State* New_State);
+	void Update(InputEnum input);
 
 };
 

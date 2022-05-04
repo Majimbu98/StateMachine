@@ -1,35 +1,36 @@
 #include "Idle.h"
+#include "../../Context.h"
 #include "../FlyUp/FlyUp.h"
 #include "../GoingDown/GoingDown.h"
 #include "../GoingDownAndShooting/GoingDownAndShooting.h"
 #include "../ShootingOnField/ShootingOnField.h"
 
-State* Idle::PressFlyInput()
+
+State*  Idle::UpdateState(Context * context, InputEnum input)
 {
-    return new FlyUp;
+    State::UpdateState(context, input);
+
+    if (input == InputEnum::GoUp)
+        return GotoFlyState();
+
+    if (input == StartShoot)
+        return GotoShootState();
+
+    return this;
 }
 
-
-State* Idle::PressShootInput(bool Munitions)
+State* Idle::GotoShootState()
 {
-    if (Munitions)
+    if (m_Context->CheckMunitions())
     {
-        return new ShootingOnField;
+        return new ShootingOnField();
     }
     else
-    {
-        return new Idle;
-    }
-
+        return new Idle();
 }
 
-
-State* Idle::ReleaseFlyInput(bool Field)
+State* Idle::GotoFlyState()
 {
-    return new Idle;
+    return new FlyUp();
 }
 
-State* Idle::ReleaseShootInput()
-{
-    return new Idle;
-}

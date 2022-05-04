@@ -3,30 +3,20 @@
 #include "../GoingDownAndShooting/GoingDownAndShooting.h"
 #include "../Idle/Idle.h"
 #include "../ShootingOnField/ShootingOnField.h"
+#include "..\..\ShootingAndFlyUp.h"
 
-State* FlyUp::PressFlyInput()
+State* FlyUp::UpdateState(Context* context, InputEnum input)
 {
-	return new FlyUp;
-}
+	State::UpdateState(context, input);
 
-State* FlyUp::PressShootInput(bool Munitions)
-{
-	if (Munitions)
-	{
-		return new GoingDownAndShooting;
+	m_Context->FlyUp();
+
+	if (input == InputEnum::GoUp) {
+		if (input == InputEnum::StartShoot) {
+			return new ShootingAndFlyUp();
+		}
+		return this;
 	}
-	else
-	{
-		return new GoingDown;
-	}
-}
 
-State* FlyUp::ReleaseFlyInput(bool Field)
-{
-	return new GoingDown;
-}
-
-State* FlyUp::ReleaseShootInput()
-{
-	return new FlyUp;
+	return new GoingDown();
 }

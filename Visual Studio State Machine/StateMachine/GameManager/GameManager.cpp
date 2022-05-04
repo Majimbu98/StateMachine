@@ -4,7 +4,8 @@ using namespace std;
 
 GameManager::GameManager()
 {
-	this->Input = 0;
+	this->Input = InputEnum::NoInput;
+	Context = new Context();
 }
 
 GameManager::~GameManager()
@@ -24,31 +25,21 @@ void GameManager::Start()
 
 void GameManager::ProcessInput()
 {
-	char MyInput;
-	cin >> MyInput;
-	this->Input = MyInput;
+		char MyInput;
+		cin >> MyInput;
+
+		switch (MyInput)
+		{
+		case 'w': Input = InputEnum::GoUp; break;
+		case 's': Input = InputEnum::GoDown; break;
+		case 'a': Input = InputEnum::StartShoot; break;
+		case 'b': Input = InputEnum::FinishShoot; break;
+		};
 }
 
 void GameManager::Update()
 {
-	
-	switch (this->Input)
-	{
-	case StartShoot:
-		Test.ChangeState(Test.My_State->PressShootInput(StatusManager::UseMunitions(Test)));
-		break;
-	case GoUp:
-		StatusManager::GoUp(Test);
-		StatusManager::GoUp(Test);
-		Test.ChangeState(Test.My_State->PressFlyInput());
-	case GoDown:
-		StatusManager::GoDown(Test);
-		Test.ChangeState(Test.My_State->ReleaseFlyInput(StatusManager::IsOnField(Test)));
-	case FinishShoot:
-		Test.ChangeState(Test.My_State->ReleaseShootInput());
-	}
-
-
+	Player->Update(Input);
 }
 
 void GameManager::Render()

@@ -151,8 +151,10 @@
     <ClCompile Include="StatusManager\StatusManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Context.h" />
     <ClInclude Include="GameManager\GameManager.h" />
     <ClInclude Include="Player\Player.h" />
+    <ClInclude Include="ShootingAndFlyUp.h" />
     <ClInclude Include="States\FlyUp\FlyUp.h" />
     <ClInclude Include="States\GoingDownAndShooting\GoingDownAndShooting.h" />
     <ClInclude Include="States\GoingDown\GoingDown.h" />

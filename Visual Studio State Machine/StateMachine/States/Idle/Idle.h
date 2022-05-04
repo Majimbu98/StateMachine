@@ -2,11 +2,11 @@
 
 class Idle : public State
 {
-public:
+private:
+		State* GotoShootState();
+		State* GotoFlyState();
 
-	State* PressFlyInput()override;
-	State* PressShootInput(bool Munitions)override;
-	State* ReleaseFlyInput(bool Field)override;
-	State* ReleaseShootInput()override;
+public:
+	virtual State* UpdateState(Context *, InputEnum)override;
 };
 

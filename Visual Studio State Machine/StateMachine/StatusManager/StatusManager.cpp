@@ -25,6 +25,11 @@ bool StatusManager::UseMunitions(Player &MyPlayer)
 	}
 }
 
+bool StatusManager::CheckMunitions(Player& MyPlayer)
+{
+	return MyPlayer.Munitions <= 0;
+}
+
 void StatusManager::GoUp(Player &MyPlayer)
 {
 	MyPlayer.ZPosition = MyPlayer.ZPosition + 1;

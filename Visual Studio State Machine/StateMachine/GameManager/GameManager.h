@@ -1,20 +1,22 @@
 #pragma once
 #include "../StatusManager/StatusManager.h"
 
+enum InputEnum
+{
+	NoInput = 'x',
+	GoUp = 'w',
+	GoDown = 's',
+	StartShoot = 'a',
+	FinishShoot = 'b',
+};
+
 class GameManager
 {
 public:
-	Player Test;
-	char Input;
+	Player* Player;
+	InputEnum Input;
 
-	enum Input
-	{
-		GoUp = 'w',
-		GoDown = 's',
-		StartShoot = 'a',
-		FinishShoot = !('a'),
-	};
-
+public:
 	GameManager();
 	~GameManager();
 

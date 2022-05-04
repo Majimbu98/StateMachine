@@ -74,5 +74,11 @@
     <ClInclude Include="StatusManager\StatusManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootingAndFlyUp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

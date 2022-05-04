@@ -5,37 +5,19 @@
 #include "../Idle/Idle.h"
 #include "../ShootingOnField/ShootingOnField.h"
 
-State* GoingDown::PressFlyInput()
-{
-	return new FlyUp;
-}
 
-State* GoingDown::PressShootInput(bool Munitions)
+State* GoingDown::UpdateState(Context* context, InputEnum input)
 {
-	if (Munitions)
-	{
-		return new GoingDownAndShooting;
-	}
-	else
-	{
-		return new GoingDown;
-	}
+	State::UpdateState(context, input);
+
+	m_Context->GoingDown();
 	
-}
+	if (m_Context->IsLanded())
+		return new Idle();
 
-State* GoingDown::ReleaseFlyInput(bool Field)
-{
-	if (Field)
-	{
-		return new Idle;
-	}
-	else
-	{
-		return new GoingDown;
-	}
-}
+	if (input == InputEnum::StartShoot)
+		return new GoingDownAndShooting();
 
-State* GoingDown::ReleaseShootInput()
-{
-	return new GoingDown;
+
+	return this;
 }

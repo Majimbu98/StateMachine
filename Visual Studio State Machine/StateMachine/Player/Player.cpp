@@ -7,12 +7,16 @@ Player::Player()
 	this->YPosition = 0;
 	this->ZPosition = 0;
 	this->Munitions = 10;
-	this->My_State = new Idle;
+
+	this->CurrentState = new Idle();
 }
 
-void Player::ChangeState(State* New_State)
+void Player::Update(InputEnum input)
 {
+	State* new_state  = CurrentState->UpdateState(m_Context, input);
 
-	My_State = New_State;
+	if (CurrentState != new_state)
+		delete CurrentState;
+
+	CurrentState = new_state;
 }
-

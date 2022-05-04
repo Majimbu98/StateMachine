@@ -2,10 +2,8 @@
 
 class FlyUp : public State
 {
-public:
 
-	State* PressFlyInput()override;
-	State* PressShootInput(bool Munitions)override;
-	State* ReleaseFlyInput(bool Field)override;
-	State* ReleaseShootInput()override;
+
+public:
+	virtual State* UpdateState(Context*, InputEnum)override;
 };
